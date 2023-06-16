@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'hyperion_card.dart';
 
 class HyperionList extends StatelessWidget {
@@ -9,15 +10,12 @@ class HyperionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: SizedBox(
-        width: 272,
-        child: ListView(
-          children: cardTitles
-              .map(
-                (title) => HyperionCard(title: title),
-              )
-              .toList(),
-        ),
+      child: Column(
+        children: cardTitles
+            .map(
+              (title) => HyperionDraggableCard(title: title),
+            )
+            .toList(),
       ),
     );
   }

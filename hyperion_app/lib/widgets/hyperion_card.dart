@@ -1,16 +1,5 @@
 import 'package:flutter/material.dart';
 
-class HyperionDraggingCard extends StatelessWidget {
-  final String title;
-
-  const HyperionDraggingCard({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(child: ListTile(title: Text(title)));
-  }
-}
-
 class HyperionCard extends StatelessWidget {
   final String title;
 
@@ -18,7 +7,29 @@ class HyperionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LongPressDraggable(
-        child: Card(child: ListTile(title: Text(title))), feedback: feedback);
+    return SizedBox(
+      width: 256,
+      child: Card(
+        child: ListTile(
+          title: Text(title),
+        ),
+      ),
+    );
+  }
+}
+
+class HyperionDraggableCard extends StatelessWidget {
+  final String title;
+
+  const HyperionDraggableCard({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Draggable(
+      feedback: HyperionCard(title: title),
+      child: HyperionCard(
+        title: title,
+      ),
+    );
   }
 }
