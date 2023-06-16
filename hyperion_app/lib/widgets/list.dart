@@ -52,7 +52,7 @@ class _HyperionListState extends State<HyperionList> {
 
     if (!_insideList) return children;
 
-    const placeholder = HyperionCard(title: 'Placeholder');
+    const placeholder = CardPlaceholder();
     if (_cardIndex != -1) {
       children.insert(
         _cardIndex,

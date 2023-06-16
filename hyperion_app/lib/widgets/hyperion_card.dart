@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const _cardWidth = 256.0;
+
 @immutable
 class CardData {
   final int index;
@@ -16,10 +18,29 @@ class HyperionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 256,
+      width: _cardWidth,
       child: Card(
         child: ListTile(
           title: Text(title),
+        ),
+      ),
+    );
+  }
+}
+
+class CardPlaceholder extends StatelessWidget {
+  const CardPlaceholder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: SizedBox(
+        width: _cardWidth,
+        child: Card(
+          color: Theme.of(context).colorScheme.surfaceVariant,
+          child: const ListTile(
+            title: Text('Placeholder'),
+          ),
         ),
       ),
     );
