@@ -1,4 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+
 import 'widgets/list.dart';
 
 void main() {
@@ -31,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<String> cardListTitles = ['To-Do', 'In Progress', 'Done'];
   List<List<String>> cardLists = [
     ['Card 1', 'Card 2', 'Card 3'],
     ['Card 4', 'Card 5', 'Card 6'],
@@ -44,16 +47,16 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Row(
-          children: cardLists
-              .map(
-                (cards) => HyperionList(
-                  cardTitles: cards,
-                ),
-              )
-              .toList(),
-        ),
+      body: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: cardLists
+            .mapIndexed(
+              (index, cards) => HyperionList(
+                title: cardListTitles[index],
+                cardTitles: cards,
+              ),
+            )
+            .toList(),
       ),
     );
   }
