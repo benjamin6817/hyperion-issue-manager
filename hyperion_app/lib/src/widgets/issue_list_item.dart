@@ -75,6 +75,7 @@ class IssueListItem extends StatelessWidget {
     return DragTarget<IssueData>(
       onMove: (_) => onMove(data.index),
       onLeave: (_) => onLeave(data.index),
+      onAccept: (_) => onLeave(data.index),
       builder: (context, candidateData, rejectedData) => Draggable(
         data: data,
         feedback: IssueListDraggingItem(data: data),

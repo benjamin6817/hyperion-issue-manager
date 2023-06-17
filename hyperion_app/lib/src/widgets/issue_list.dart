@@ -74,6 +74,7 @@ class _IssueListState extends State<IssueList> {
       onLeave: (details) => setState(() {
         _insideList = false;
       }),
+      onAccept: (details) => _onCardLeave(-1),
       builder: (context, candidateData, rejectedData) => Card(
         child: Container(
           padding: const EdgeInsets.only(bottom: 40.0),
