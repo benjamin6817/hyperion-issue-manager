@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 const _cardWidth = 256.0;
 
 @immutable
-class CardData {
+class IssueData {
   final int index;
   final String title;
 
-  const CardData({required this.index, required this.title});
+  const IssueData({required this.index, required this.title});
 }
 
-class HyperionCard extends StatelessWidget {
+class IssueListBaseItem extends StatelessWidget {
   final String title;
 
-  const HyperionCard({super.key, required this.title});
+  const IssueListBaseItem({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,8 @@ class HyperionCard extends StatelessWidget {
   }
 }
 
-class CardPlaceholder extends StatelessWidget {
-  const CardPlaceholder({super.key});
+class IssueListPlaceholder extends StatelessWidget {
+  const IssueListPlaceholder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,23 +47,23 @@ class CardPlaceholder extends StatelessWidget {
   }
 }
 
-class HyperionDraggingCard extends StatelessWidget {
-  final CardData data;
+class IssueListDraggingItem extends StatelessWidget {
+  final IssueData data;
 
-  const HyperionDraggingCard({super.key, required this.data});
+  const IssueListDraggingItem({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
-    return HyperionCard(title: data.title);
+    return IssueListBaseItem(title: data.title);
   }
 }
 
-class HyperionDraggableCard extends StatelessWidget {
+class IssueListItem extends StatelessWidget {
   final void Function(int index) onMove;
   final void Function(int index) onLeave;
-  final CardData data;
+  final IssueData data;
 
-  const HyperionDraggableCard({
+  const IssueListItem({
     super.key,
     required this.onMove,
     required this.onLeave,
@@ -72,13 +72,13 @@ class HyperionDraggableCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DragTarget<CardData>(
+    return DragTarget<IssueData>(
       onMove: (_) => onMove(data.index),
       onLeave: (_) => onLeave(data.index),
       builder: (context, candidateData, rejectedData) => Draggable(
         data: data,
-        feedback: HyperionDraggingCard(data: data),
-        child: HyperionCard(title: data.title),
+        feedback: IssueListDraggingItem(data: data),
+        child: IssueListBaseItem(title: data.title),
       ),
     );
   }

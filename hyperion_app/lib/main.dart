@@ -1,11 +1,12 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/list.dart';
+import 'src/widgets/issue_board.dart';
 
 void main() {
   runApp(const App());
 }
+
+const appTitle = 'Hyperion Issue Manager';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,51 +14,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: appTitle,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Hyperion'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  List<String> cardListTitles = ['To-Do', 'In Progress', 'Done'];
-  List<List<String>> cardLists = [
-    ['Card 1', 'Card 2', 'Card 3'],
-    ['Card 4', 'Card 5', 'Card 6'],
-    ['Card 7', 'Card 8', 'Card 9']
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: cardLists
-            .mapIndexed(
-              (index, cards) => HyperionList(
-                title: cardListTitles[index],
-                cardTitles: cards,
-              ),
-            )
-            .toList(),
-      ),
+      home: const IssueBoard(title: appTitle),
     );
   }
 }

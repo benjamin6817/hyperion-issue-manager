@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-import 'hyperion_card.dart';
+import 'issue_list_item.dart';
 
-class HyperionList extends StatefulWidget {
-  const HyperionList({
+class IssueList extends StatefulWidget {
+  const IssueList({
     super.key,
     required this.title,
     required this.cardTitles,
@@ -14,10 +14,10 @@ class HyperionList extends StatefulWidget {
   final List<String> cardTitles;
 
   @override
-  State<HyperionList> createState() => _HyperionListState();
+  State<IssueList> createState() => _IssueListState();
 }
 
-class _HyperionListState extends State<HyperionList> {
+class _IssueListState extends State<IssueList> {
   bool _insideList = false;
   int _cardIndex = -1;
 
@@ -39,10 +39,10 @@ class _HyperionListState extends State<HyperionList> {
     List<Widget> children = [];
     widget.cardTitles.forEachIndexed((index, title) {
       children.add(
-        HyperionDraggableCard(
+        IssueListItem(
           onMove: _onCardHover,
           onLeave: _onCardLeave,
-          data: CardData(
+          data: IssueData(
             index: index,
             title: title,
           ),
@@ -52,7 +52,7 @@ class _HyperionListState extends State<HyperionList> {
 
     if (!_insideList) return children;
 
-    const placeholder = CardPlaceholder();
+    const placeholder = IssueListPlaceholder();
     if (_cardIndex != -1) {
       children.insert(
         _cardIndex,
@@ -67,7 +67,7 @@ class _HyperionListState extends State<HyperionList> {
 
   @override
   Widget build(BuildContext context) {
-    return DragTarget<CardData>(
+    return DragTarget<IssueData>(
       onMove: (details) => setState(() {
         _insideList = true;
       }),
